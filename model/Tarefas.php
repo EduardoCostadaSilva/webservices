@@ -17,9 +17,11 @@ class Tarefa {
     public function create() {
         $query = 'INSERT INTO ' . $this->table_name . ' SET titulo = :titulo, descricao = :descricao, id_usuario = :id_usuario';
         $stmt = $this->conn->prepare($query);
+
         $this->titulo = htmlspecialchars(strip_tags($this->titulo));
         $this->descricao = htmlspecialchars(strip_tags($this->descricao));
         $this->id_usuario = htmlspecialchars(strip_tags($this->id_usuario));
+
         $stmt->bindParam(':titulo', $this->titulo);
         $stmt->bindParam(':descricao', $this->descricao);
         $stmt->bindParam(':id_usuario', $this->id_usuario);
@@ -54,6 +56,7 @@ class Tarefa {
         }
         return [];
     }
+    
 
 
     // Atualizar usuário
@@ -96,7 +99,6 @@ class Tarefa {
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            $this->id_tarefa = $row['id_tarefa'];
             $this->titulo = $row['titulo'];
             $this->descricao = $row['descricao'];
             $this->id_usuario = $row['id_usuario'];
@@ -105,5 +107,4 @@ class Tarefa {
         return [];
     }
 }
-
 
