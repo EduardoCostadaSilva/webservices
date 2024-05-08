@@ -9,6 +9,7 @@ function dd($valor)
     echo "<pre>";
     print_r($valor);
     echo "</pre>";
+    exit;
 }
 
 $metodo = $_SERVER['REQUEST_METHOD'];
@@ -103,7 +104,8 @@ if ($rota[1] == "usuarios") {
     switch ($metodo) {
         case "GET":
             if (isset($rota[2]) && $rota[2] == "usuarios") {
-                $result = $tarefas->getByUserId($rota[3]);
+                
+                $result = $tarefa->getByUserId($rota[3]);
                 if (count($result) == 0) {
                     $status_code = 404;
                     $resposta['status'] = false;
