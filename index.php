@@ -190,5 +190,6 @@ if ($rota[1] == "usuarios") {
 
 
 http_response_code($status_code);
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 echo json_encode($resposta);
